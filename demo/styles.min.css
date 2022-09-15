@@ -584,6 +584,10 @@ video {
   max-width: 600px;
 }
 
+.max-w-\[1000px\] {
+  max-width: 1000px;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
