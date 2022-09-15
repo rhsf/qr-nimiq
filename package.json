@@ -18,6 +18,7 @@
     "types/qr-scanner.d.ts"
   ],
   "scripts": {
+    "styles": "npx tailwindcss -i demo/styles.css -o demo/styles.min.css",
     "build": "rollup --config && tsc src/qr-scanner.ts --target esnext --module esnext --declaration --declarationDir types --emitDeclarationOnly"
   },
   "repository": {
@@ -53,6 +54,7 @@
     "jsqr-es6": "^1.4.0-1",
     "rollup": "^2.21.0",
     "rollup-plugin-sourcemaps": "^0.6.2",
+    "tailwindcss": "^3.1.8",
     "tslib": "^2.3.1",
     "typescript": "^4.5.5"
   }
