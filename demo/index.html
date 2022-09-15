@@ -2,17 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>QR Scanner Demo</title>
+    <title>nimiq QR Scanner</title>
+    <link href="styles.min.css" rel="stylesheet">
 </head>
-<body>
-<h1>Scan from WebCam:</h1>
-<div id="video-container">
+<body class="p-6 lg:p-12 bg-black/90 text-white/90">
+<h1 class="text-2xl font-bold py-4">Scan from WebCam:</h1>
+<div id="video-container" class="w-full max-w-[600px] aspect-video rounded-lg bg-black/50 overflow-hidden">
     <video id="qr-video"></video>
 </div>
 <div>
     <label>
         Highlight Style
-        <select id="scan-region-highlight-style-select">
+        <select id="scan-region-highlight-style-select" class="px-2 py-1 bg-black/80 rounded">
             <option value="default-style">Default style</option>
             <option value="example-style-1">Example custom style 1</option>
             <option value="example-style-2">Example custom style 2</option>
@@ -24,7 +25,7 @@
     </label>
 </div>
 <div>
-    <select id="inversion-mode-select">
+    <select id="inversion-mode-select" class="px-2 py-1 bg-black/80 rounded">
         <option value="original">Scan original (dark QR code on bright background)</option>
         <option value="invert">Scan with inverted colors (bright QR code on dark background)</option>
         <option value="both">Scan both</option>
@@ -36,7 +37,7 @@
 <br>
 <div>
     <b>Preferred camera:</b>
-    <select id="cam-list">
+    <select id="cam-list" class="px-2 py-1 bg-black/80 rounded">
         <option value="environment" selected>Environment Facing (default)</option>
         <option value="user">User Facing</option>
     </select>
@@ -51,13 +52,13 @@
 <span id="cam-qr-result">None</span>
 <br>
 <b>Last detected at: </b>
-<span id="cam-qr-result-timestamp"></span>
+<div id="cam-qr-result-timestamp" class="my-4 p-4 font-mono rounded bg-black/50"></div>
 <br>
-<button id="start-button">Start</button>
-<button id="stop-button">Stop</button>
+<button id="start-button" class="px-2 py-1 bg-black/60 rounded">Start</button>
+<button id="stop-button" class="px-2 py-1 bg-black/60 rounded">Stop</button>
 <hr>
 
-<h1>Scan from File:</h1>
+<h1 class="text-2xl font-bold py-4">Scan from File:</h1>
 <input type="file" id="file-selector">
 <b>Detected QR code: </b>
 <span id="file-qr-result">None</span>
@@ -82,7 +83,7 @@
     function setResult(label, result) {
         console.log(result.data);
         label.textContent = result.data;
-        camQrResultTimestamp.textContent = new Date().toString();
+        camQrResultTimestamp.textContent = result.data;
         label.style.color = 'teal';
         clearTimeout(label.highlightTimeout);
         label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
