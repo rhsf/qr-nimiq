@@ -1,6 +1,21 @@
 // @ts-ignore jsqr-es6 does not provide types currently
 import jsQR from '../node_modules/jsqr-es6/dist/jsQR.js';
 
+const cacheName = "qr-cache";
+if ('caches' in window) {
+  try {
+    const cache = await caches.open(cacheName);
+    const urlsToCache = ["./", "index.html", "styles.min.css", "qr-scanner.min.js", "qr-scanner-worker.min.js",]
+    await cache.addAll(urlsToCache);
+    console.debug(urlsToCache.length + " files were cached on " + cacheName);
+    
+  } catch (error) {
+    console.debug("Error while caching multiple files. " + error.message);
+  }    
+} else {
+    console.debug("Cache Storage not available");
+}
+
 type GrayscaleWeights = {
     red: number,
     green: number,
